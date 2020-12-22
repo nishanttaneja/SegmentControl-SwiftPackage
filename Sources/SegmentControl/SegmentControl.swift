@@ -8,12 +8,45 @@
 import UIKit
 
 public class SegmentControl: UIView {
+    // Data
     public var segments: [Segment] = [] {
         didSet {
             configureConstraints()
         }
     }
+    // UI
+    public var shadowColor: CGColor? {
+        willSet {
+            layer.shadowColor = newValue
+        }
+    }
+    public var shadowRadius: CGFloat? {
+        willSet {
+            layer.shadowRadius = newValue ?? 0
+        }
+    }
+    public var shadowOpacity: Float? {
+        willSet {
+            layer.shadowOpacity = newValue ?? 0
+        }
+    }
+    public var cornerRadius: CGFloat? {
+        willSet {
+            layer.cornerRadius = newValue ?? 0
+        }
+    }
+    public var borderWidth: CGFloat? {
+        willSet {
+            layer.borderWidth = newValue ?? 0
+        }
+    }
+    public var borderColor: CGColor? {
+        willSet {
+            layer.borderColor = newValue
+        }
+    }
     
+    // Design
     private var stackView: UIStackView {
         let stackView = UIStackView(arrangedSubviews: segmentViews())
         stackView.axis = .horizontal
@@ -39,7 +72,6 @@ public class SegmentControl: UIView {
     /// This method configures constraints
     private func configureConstraints() {
         let stackView = self.stackView
-        stackView.backgroundColor = .green
         addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
